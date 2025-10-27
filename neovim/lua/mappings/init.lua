@@ -1,0 +1,7 @@
+require("mappings.buffers")
+require("mappings.save")
+require("mappings.windows")
+require("mappings.lsp")
+require("mappings.term")
+require("mappings.telescope")
+require("mappings.open")

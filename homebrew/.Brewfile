@@ -1,0 +1,6 @@
+brew "neovim"
+brew "ripgrep"
+brew "starship"
+cask "font-caskaydia-cove-nerd-font"
+cask "hammerspoon"
+cask "kitty"
