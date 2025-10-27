@@ -46,6 +46,7 @@ link_dotfiles "zsh" "."
 link_dotfiles "starship" ".config"
 link_dotfiles "kitty" ".config/kitty"
 link_dotfiles "neovim" ".config/nvim"
+link_dotfiles "bin" ".bin"
 
 ##############
 # MACOS ONLY #
@@ -74,7 +75,6 @@ if ! command -v cargo >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   . $HOME/.zshenv
 fi
-
 
 if [ ! -d "$HOME/.sdkman" ]; then
 	echo "-----------------------------------------"
