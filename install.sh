@@ -48,43 +48,54 @@ link_dotfiles "kitty" ".config/kitty"
 link_dotfiles "neovim" ".config/nvim"
 link_dotfiles "bin" ".bin"
 
+
 ##############
 # MACOS ONLY #
 ##############
 
-link_dotfiles "hammerspoon" ".hammerspoon"
-link_dotfiles "homebrew" "."
+if [ "$OSTYPE" = "darwin"* ]; then
+  link_dotfiles "hammerspoon" ".hammerspoon"
+  link_dotfiles "homebrew" "."
 
-if ! command -v brew >/dev/null 2>&1; then
-	echo "-----------------------------------------"
-	echo "🍺 Installing homebrew..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "-----------------------------------------"
+    echo "🍺 Installing homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  brew bundle --file=~/.Brewfile
 fi
 
-brew bundle --file=~/.Brewfile
 
+#############
+# ARCH ONLY #
+#############
+
+if [ "$OSTYPE" != "darwin"* ]; then
+
+fi
 
 #############
 # DEV TOOLS #
 #############
 
 if ! command -v cargo >/dev/null 2>&1; then
-	echo "-----------------------------------------"
-	echo "🦀 Installing rust..."
+  echo "-----------------------------------------"
+  echo "🦀 Installing rust..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   . $HOME/.zshenv
 fi
 
 if [ ! -d "$HOME/.sdkman" ]; then
-	echo "-----------------------------------------"
-	echo " Installing sdkman..."
+  echo "-----------------------------------------"
+  echo " Installing sdkman..."
   curl -s "https://get.sdkman.io" | bash
 fi
 
 if ! command -v fnm >/dev/null 2>&1; then
-	echo "-----------------------------------------"
-	echo "󰎙 Installing node..."
+  echo "-----------------------------------------"
+  echo "󰎙 Installing node..."
   curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
   eval "$(fnm env)"
 fi
