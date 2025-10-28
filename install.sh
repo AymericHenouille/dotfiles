@@ -53,7 +53,7 @@ link_dotfiles "bin" ".bin"
 # MACOS ONLY #
 ##############
 
-if [ "$OSTYPE" = "darwin"* ]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   link_dotfiles "hammerspoon" ".hammerspoon"
   link_dotfiles "homebrew" "."
 
@@ -72,7 +72,7 @@ fi
 # ARCH ONLY #
 #############
 
-if [ "$OSTYPE" != "darwin"* ]; then
+if [[ "$OSTYPE" != "darwin"* ]]; then
 	echo "Arch" 
 fi
 
