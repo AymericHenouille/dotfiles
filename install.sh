@@ -28,7 +28,7 @@ link_dotfiles() {
 		if [ -e "$file" ]; then
 			if [ -L "$target" ]; then
 				echo "↺ Updating symlink $target"
-        rm -rf $target
+				rm -rf $target
 				ln -s "$file" "$target"
 			elif [ -e "$target" ]; then
 				echo "⚠️ $target exists and is not a symlink, skipping"
@@ -73,7 +73,7 @@ fi
 #############
 
 if [ "$OSTYPE" != "darwin"* ]; then
-
+	echo "Arch" 
 fi
 
 #############
