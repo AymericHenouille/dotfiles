@@ -17,3 +17,13 @@ alias grep="grep --color=auto"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+
+if command -v fastfetch >/dev/null 2>&1; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    image="$HOME/.local/share/fastfetch/apple.png"
+  else
+    image="$HOME/.local/share/fastfetch/arch.png"
+  fi
+
+  fastfetch --logo $image --logo-type kitty-icat --logo-width 50
+fi
