@@ -27,3 +27,7 @@ if command -v fastfetch >/dev/null 2>&1; then
 
   fastfetch --logo $image --logo-type kitty-icat --logo-width 50
 fi
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
