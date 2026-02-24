@@ -47,7 +47,7 @@ link_dotfiles "starship" ".config"
 link_dotfiles "kitty" ".config/kitty"
 link_dotfiles "neovim" ".config/nvim"
 link_dotfiles "bin" ".bin"
-link_dotfiles "fastfetch" ".local/share/fastfetch"
+link_dotfiles "fastfetch" ".config/fastfetch"
 
 
 ##############

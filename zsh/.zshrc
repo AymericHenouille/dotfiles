@@ -13,6 +13,7 @@ fi
 
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
+alias ssh="kitten ssh"
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -25,7 +26,7 @@ if command -v fastfetch >/dev/null 2>&1; then
     image="$HOME/.local/share/fastfetch/arch.png"
   fi
 
-  fastfetch --logo $image --logo-type kitty-icat --logo-width 50
+  fastfetch
 fi
 
 
