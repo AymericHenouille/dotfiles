@@ -11,3 +11,5 @@ end
 
 local notifications = hs.distributednotifications.new(run_hook, "AppleInterfaceThemeChangedNotification")
 notifications:start()
+
+run_hook()

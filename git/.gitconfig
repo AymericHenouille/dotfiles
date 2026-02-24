@@ -2,13 +2,14 @@
   defaultBranch = master
 
 [user]
-	name = Aymeric Hénouille
-	email = 30652970+AymericHenouille@users.noreply.github.com
+  name = Aymeric Hénouille
+  email = 30652970+AymericHenouille@users.noreply.github.com
 
 [color]
   status = auto
   branch = auto
   interactive = auto
   diff = auto
+
 [pull]
-	rebase = false
+  rebase = false
