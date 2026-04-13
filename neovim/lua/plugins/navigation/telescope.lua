@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
+  version = "*",
   command = "Telescope",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -13,6 +13,9 @@ return {
   opts = {
     defaults = {
       path_display = { "smart" },
+      preview = {
+        treesitter = false,
+      },
       mappings = {
         ["i"] = {
           -- Utility action to open all selected files into buffers

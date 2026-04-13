@@ -1,7 +1,7 @@
 return {
   "williamboman/mason.nvim",
   name = "mason",
-  tag = "v2.1.0",
+  tag = "v2.2.1",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     ui = {

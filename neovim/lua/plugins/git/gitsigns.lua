@@ -29,8 +29,7 @@ return {
       nmap("<LEADER>hp", gitsigns.preview_hunk, "Preview the hunk under the cursor")
       nmap("<LEADER>hr", gitsigns.reset_hunk, "Reset the hunk under the cursor")
 
-      nmap("<LEADER>tb", gitsigns.toggle_current_line_blame "Toggle the git blame line")
-      nmap("<LEADER>td", gitsigns.toggle_deleted, "Toggle the deleted git lines")
+      nmap("<LEADER>tb", gitsigns.toggle_current_line_blame, "Toggle the git blame line")
       nmap("<LEADER>tw", gitsigns.toggle_word_diff, "Toggle git word diff")
 
       nmap("<LEADER>hh", function()
