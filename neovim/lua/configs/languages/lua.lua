@@ -3,17 +3,15 @@ return {
   lspservers = { "lua_ls" },
   handlers = {
     ["lua_ls"] = function(lspconfig, opts)
-      local table = require("features.table")
-      return function()
-        lspconfig.lua_ls.setup(table.mergetables({
-          opts,
-          {
-            settings = {
-              Lua = {
-              },
-            },
+      local options = vim.tbl_extend("force", opts, {
+        settings = {
+          Lua = {
+
           },
-        }))
+        },
+      })
+      return function()
+        lspconfig("lua_ls", options)
       end
     end,
   },

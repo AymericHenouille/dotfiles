@@ -3,14 +3,13 @@ return {
   lspservers = { "ts_ls" },
   handlers = {
     ["ts_ls"] = function(lspconfig, opts)
-      local options = {
+      local options = vim.tbl_extend("force", opts, {
         settings = {
           quoteStyle = "single",
         },
-      }
+      })
       return function()
-        local full_options = vim.tbl_extend("force", { opts, options })
-        lspconfig.ts_ls.setup(full_options)
+        lspconfig("ts_ls", options)
       end
     end,
   },

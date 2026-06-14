@@ -7,16 +7,20 @@ return {
     require("plugins.lsp.completion"),
   },
   config = function()
-    local masonlspconfig = require("mason-lspconfig")
-    local lspconfig = require("lspconfig")
+    local mason_lspconfig = require("mason-lspconfig")
     local support = require("configs.support")
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
-    masonlspconfig.setup({
-      ensure_installed = support.lspservers,
+
+    local handlers = support.handlers(vim.lsp.config --[[@as LspConfigFn]], {
+      capabilities = require("blink.cmp").get_lsp_capabilities(),
+    })
+
+    for servername, handler in pairs(handlers) do
+      handler(servername)
+    end
+
+    mason_lspconfig.setup({
+      ensure_installed = support.lspservers(),
       automatic_installation = true,
-      handlers = support.handlers(lspconfig, {
-        capabilities = capabilities,
-      }),
     })
   end,
 }
