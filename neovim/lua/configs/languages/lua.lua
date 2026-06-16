@@ -10,8 +10,8 @@ return {
           },
         },
       })
-      return function()
-        lspconfig("lua_ls", options)
+      return function(servername)
+        lspconfig(servername, options)
       end
     end,
   },

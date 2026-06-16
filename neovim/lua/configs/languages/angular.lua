@@ -58,6 +58,7 @@ return {
         end
       })
       return function(servername)
+        vim.notify(vim.inspect(servername))
         lspconfig(servername, options)
       end
     end

@@ -1,3 +1,4 @@
+---@type LanguageConfig
 return {
   treesitters = { "java" },
   lspservers = { "jdtls", "gradle_ls" },
