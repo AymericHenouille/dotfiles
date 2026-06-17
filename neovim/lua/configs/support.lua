@@ -3,12 +3,12 @@
 ---@class LanguageSupport
 ---@field treesitters fun(): string[] The treesitters config to install.
 ---@field lspservers fun(): string[] The lsp server to install.
----@field handlers fun(lspconfig: LspConfigFn, opts: table): table<string, fun(servername: string)> handlers The handlers function to call for init the lsp server.
+---@field handlers fun(opts: table): table<string, fun(lspconfig: LspConfigFn, servername: string)> handlers The handlers function to call for init the lsp server.
 
 ---@class LanguageConfig 
 ---@field treesitters string[] The trissiters bin to install and load.
 ---@field lspservers string[] The lsp servers bin to install and load.
----@field handlers table<string, fun(lspconfig: LspConfigFn, opts: table): fun(servername: string)> The handlers called to apply a custom configuration for a given lsp server
+---@field handlers table<string, fun(opts: table): fun(lspconfig: LspConfigFn, servername: string)> The handlers called to apply a custom configuration for a given lsp server
 
 local languages = vim.fn.stdpath("config") .. "/lua/configs/languages/*.lua"
 local paths = vim.fn.split(vim.fn.glob(languages), "\n")
@@ -48,18 +48,20 @@ M.lspservers = function()
 end
 
 ---Load the lsp server handlers
----@param lspconfig LspConfigFn The lsp config instance.
 ---@param opts table The lsp config options
 ---@return fun()[] handlers The handlers function to call for init the lsp server 
-M.handlers = function(lspconfig, opts)
-  return vim.iter(supports):map(function(support)
-    local handlers_config = support.handlers or {}
-    return vim.tbl_map(function(handler)
-      return handler(lspconfig, opts)
-    end, handlers_config)
-  end):filter(function(handlers)
-    return #handlers > 0
-  end):flatten():totable()
+M.handlers = function(opts)
+  return vim.iter(supports)
+    :map(function(support)
+      return vim.tbl_map(function(handler)
+        return handler(opts)
+      end, support.handlers or {})
+    end)
+    :filter(function(handlers)
+      return #handlers > 0
+    end)
+    :flatten()
+    :totable()
 end
 
 return M --[[ @as LanguageSupport ]]

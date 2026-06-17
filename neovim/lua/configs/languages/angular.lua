@@ -38,11 +38,12 @@ local function create_run_angularls_command(root_dir)
   }
 end
 
+---@type LanguageConfig
 return {
   treesitters = { "angular" },
   lspservers = { "angularls", "emmet_ls" },
   handlers = {
-    ["angularls"] = function(lspconfig, opts)
+    ["angularls"] = function(opts)
       local root_dir = vim.fn.getcwd()
       local options = vim.tbl_extend("force", opts, {
         filetypes = {
@@ -57,10 +58,8 @@ return {
           new_config.cmd = create_run_angularls_command(new_root_dir)
         end
       })
-      return function(servername)
-        vim.notify(vim.inspect(servername))
-        lspconfig(servername, options)
-      end
+      local lsp_loader = require("features.lsp_loader")
+      return lsp_loader.load_options(options)
     end
   }
 }

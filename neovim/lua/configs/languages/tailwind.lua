@@ -1,23 +1,21 @@
+local lsp_loader = require("features.lsp_loader")
+
+---@type LanguageConfig
 return {
   treesitters = {},
   lspservers = { "tailwindcss" },
   handlers = {
-    ["tailwindcss"] = function(lspconfig, opts)
-      local options = vim.tbl_extend("force", opts, {
-        filetypes = {
-          "templ",
-          "vue",
-          "html",
-          "astro",
-          "javascript",
-          "typescript",
-          "react",
-          "htmlangular",
-        },
-      })
-      return function()
-        lspconfig("tailwindcss", options)
-      end
-    end,
+    ["tailwindcss"] = lsp_loader.handler_with_options({
+      filetypes = {
+        "templ",
+        "vue",
+        "html",
+        "astro",
+        "javascript",
+        "typescript",
+        "react",
+        "htmlangular",
+      },
+    }),
   },
 }

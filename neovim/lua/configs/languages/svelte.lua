@@ -1,5 +1,6 @@
+---@type LanguageConfig
 return {
   treesitters = { "svelte" },
   lspservers = { "svelte" },
-  handlers = {}
+  handlers = {},
 }

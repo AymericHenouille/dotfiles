@@ -10,12 +10,12 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
     local support = require("configs.support")
 
-    local handlers = support.handlers(vim.lsp.config --[[@as LspConfigFn]], {
+    local handlers = support.handlers({
       capabilities = require("blink.cmp").get_lsp_capabilities(),
     })
 
     for servername, handler in pairs(handlers) do
-      handler(servername)
+      handler(vim.lsp.config --[[@as LspConfigFn]], servername)
     end
 
     mason_lspconfig.setup({

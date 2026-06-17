@@ -1,3 +1,6 @@
+---@type LanguageConfig
 return {
-  treesitters = { "vim", "vimdoc", "query" }
+  treesitters = { "vim", "vimdoc", "query" },
+  handlers = {},
+  lspservers = {},
 }
