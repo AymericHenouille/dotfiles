@@ -39,9 +39,12 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
-        window = { border = 'rounded' },
+        window = { border = "rounded" },
       },
     },
     signature = { enabled = true },
+    enabled = function()
+      return vim.bo.filetype ~= "oil"
+    end
   },
 }

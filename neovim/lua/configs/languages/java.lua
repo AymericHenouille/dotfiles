@@ -8,8 +8,10 @@ return {
     ["jdtls"] = lsp_loader.handler_with_options({
       cmd = {
         "jdtls",
-        "--jvm-arg=-javaagent:" .. vim.fn.stdpath("data") .. "/mason/packages/jdtls/lombok.jar",
-      }
+        "--jvm-arg=-javaagent:"
+          .. vim.fn.stdpath("data")
+          .. "/mason/packages/jdtls/lombok.jar",
+      },
     })
   },
 }

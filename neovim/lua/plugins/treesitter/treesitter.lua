@@ -1,13 +1,17 @@
 return {
-  -- "romus204/tree-sitter-manager.nvim",
-  -- dependencies = {},
-  -- lazy = true,
-  -- event = { "BufEnter" },
-  -- opts = {
-  --   ensure_installed = require("configs.support").treesitters,
-  --   highlight = true,
-  -- },
-  -- config = function(_, opts)
-  --   require("tree-sitter-manager").setup(opts)
-  -- end
+  "nvim-treesitter/nvim-treesitter",
+  dependencies = { "neovim-treesitter/treesitter-parser-registry" },
+  opts = {
+
+  },
+  lazy = false,
+  build = ':TSUpdate',
+  config = function(_, opts)
+    local support = require("configs.support")
+    local treesitter = require("nvim-treesitter")
+    treesitter.setup(opts)
+
+    local parsers = support.treesitters()
+    treesitter.install(parsers)
+  end,
 }

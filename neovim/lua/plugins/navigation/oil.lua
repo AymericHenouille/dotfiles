@@ -18,6 +18,7 @@ return {
   config = function(_, opts)
     local oil = require("oil")
     oil.setup(opts)
+
     local nmap = require("features.map").nmap
     nmap("-", function()
       local hasfloatingwin = require("features.win").hasfloatingwin

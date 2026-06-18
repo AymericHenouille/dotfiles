@@ -32,6 +32,9 @@ M.treesitters = function()
     :map(function(support)
       return support.treesitters or {}
     end)
+    :filter(function(treesitters)
+      return vim.tbl_count(treesitters) > 0
+    end)
     :flatten()
     :totable()
 end
@@ -43,6 +46,9 @@ M.lspservers = function()
     :map(function(support)
       return support.lspservers or {}
     end)
+    :filter(function(lspservers)
+      return vim.tbl_count(lspservers) > 0
+    end)
     :flatten()
     :totable()
 end
@@ -51,17 +57,33 @@ end
 ---@param opts table The lsp config options
 ---@return fun()[] handlers The handlers function to call for init the lsp server 
 M.handlers = function(opts)
-  return vim.iter(supports)
-    :map(function(support)
-      return vim.tbl_map(function(handler)
-        return handler(opts)
-      end, support.handlers or {})
-    end)
-    :filter(function(handlers)
-      return #handlers > 0
-    end)
-    :flatten()
-    :totable()
+  ---@type table<string, fun(lspconfig: LspConfigFn, servername: string)>
+  local result = {}
+  local handlers = vim.tbl_map(
+    --- map a support config to it's handler function
+    ---@param support LanguageConfig The support config to map
+    ---@return fun(lspconfig: LspConfigFn, servername: string)[] handlers The handlers active function.
+    function(support)
+      return vim.tbl_map(
+        --- Call an handler with it's options
+        ---@param handler fun(opts: table): fun(lspconfig: LspConfigFn, servername: string) The handler to call
+        ---@return fun(lspconfig: LspConfigFn, servername: string) result - The handler active function
+        function(handler )
+          return handler(opts)
+        end,
+        support.handlers or {}
+      )
+    end,
+    supports or {}
+  ) --[[ @as table<string, fun(lspconfig: LspConfigFn, servername: string)>[] ]]
+
+  for _, sub_handlers in ipairs(handlers) do
+    for servername, handler in pairs(sub_handlers) do
+      result[servername] = handler
+    end
+  end
+
+  return result
 end
 
 return M --[[ @as LanguageSupport ]]
