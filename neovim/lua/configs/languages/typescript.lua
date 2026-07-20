@@ -2,7 +2,7 @@ local lsp_loader = require("features.lsp_loader")
 
 ---@type LanguageConfig
 return {
-  treesitters = { "typescript", "angular" },
+  treesitters = { "typescript" },
   lspservers = { "ts_ls" },
   handlers = {
     ["ts_ls"] = lsp_loader.handler_with_options({

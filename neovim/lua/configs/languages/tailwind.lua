@@ -13,7 +13,6 @@ return {
         "astro",
         "javascript",
         "typescript",
-        "react",
         "htmlangular",
       },
     }),

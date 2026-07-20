@@ -30,7 +30,7 @@ end
 
 ---@type LanguageConfig
 return {
-  treesitters = { "angular", "htmlangular" },
+  treesitters = { "angular" },
   lspservers = { "angularls", "emmet_ls" },
   handlers = {
     ["angularls"] = function(opts)
@@ -40,7 +40,6 @@ return {
           "typescript",
           "html",
           "typescriptreact",
-          "typescript.tsx",
           "htmlangular",
         },
         cmd = create_run_angularls_command(root_dir),
