@@ -1,6 +1,12 @@
-hs.loadSpoon("EmmyLua")
+local theme = require("lua.theme")
+local run_hook = theme.update_theme
 
-require("lua.themes.interface_theme_changed")
+local notifications = hs.distributednotifications.new(run_hook, "AppleInterfaceThemeChangedNotification")
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "R", hs.reload)
-hs.alert.show("Hammerspoon config reloaded")
+if notifications then
+  print("notification start")
+  notifications:start()
+end
+
+run_hook()
+
