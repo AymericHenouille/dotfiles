@@ -17,6 +17,7 @@
   },
   "diagnostics": {
     "libraryFiles": "Disable",
+    "globals": ["vim", "pcall", "xpcall", "require", "print", "pairs", "ipairs", "error"],
     "groupFileStatus": {
       "strict": "Opened",
       "strong": "Opened",

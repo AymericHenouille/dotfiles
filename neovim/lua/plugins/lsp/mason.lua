@@ -12,4 +12,11 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    local success, mason = pcall(require, "mason")
+    if success then
+      mason.setup(opts)
+      -- vim.call("MasonUpdate")
+    end
+  end,
 }
