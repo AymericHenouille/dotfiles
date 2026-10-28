@@ -30,7 +30,7 @@ end
 
 ---@type LanguageConfig
 return {
-  treesitters = { "angular" },
+  treesitters = { "angular", "htmlangular" },
   lspservers = { "angularls", "emmet_ls" },
   handlers = {
     ["angularls"] = function(opts)
@@ -52,5 +52,4 @@ return {
     end
   }
 }
-
 
