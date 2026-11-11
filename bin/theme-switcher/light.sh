@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
 # starship
-starship config palette rose-pine-dawn
+/opt/homebrew/bin/starship config palette rose-pine-dawn
 
 # kitty
 if [[ "$OSTYPE" != "darwin"* ]]; then
