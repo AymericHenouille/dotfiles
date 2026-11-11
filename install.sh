@@ -66,6 +66,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 
   brew bundle --file=~/.Brewfile
+
+  make -C "$DOTFILES_DIR/bin/theme-switcher" install
 fi
 
 
